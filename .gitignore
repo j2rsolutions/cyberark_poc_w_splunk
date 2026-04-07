@@ -1,0 +1,31 @@
+# Sensitive keys, certs, and passwords
+keys/
+*.pem
+*.pfx
+*.key
+powershell/pw
+vault.crt
+
+# Terraform state and providers
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
+terraform/.terraform/
+terraform/.terraform.lock.hcl
+
+# RDP connection files (contain IPs)
+RDP/
+terraform/domain_controller.rdp
+
+# OS and editor artifacts
+.DS_Store
+.claude/
+
+# Terraform variable files (may contain secrets)
+terraform/terraform.tfvars
+terraform/*.auto.tfvars
+
+# Downloaded archives (contents already extracted)
+*.tgz
+
+# Empty/unused files
+cmd
