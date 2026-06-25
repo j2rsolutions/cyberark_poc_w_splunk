@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(aws ecs describe-*)",
+      "Bash(aws ecs list-*)",
+      "Bash(aws sts get-caller-identity*)",
+      "Bash(aws ssm get-command-invocation *)",
+      "Bash(aws ssm describe-*)",
+      "Bash(aws ec2 describe-*)",
+      "Bash(aws route53 list-*)",
+      "Bash(aws lambda get-*)",
+      "Bash(aws ecr get-login-password*)",
+      "Bash(aws ecr describe-*)",
+      "Bash(aws logs tail *)",
+      "Bash(aws logs describe-*)",
+      "Bash(aws configure list*)",
+      "Bash(terraform output*)",
+      "Bash(terraform plan*)",
+      "Bash(terraform validate*)"
+    ]
+  }
+}

@@ -1,0 +1,621 @@
+# __generated__ by Terraform
+# Please review these resources and move them into your main configuration files.
+
+# __generated__ by Terraform
+resource "aws_ebs_volume" "cyberark_vault_data" {
+  availability_zone    = "us-gov-east-1a"
+  encrypted            = false
+  final_snapshot       = null
+  iops                 = 3000
+  multi_attach_enabled = false
+  outpost_arn          = null
+  region               = "us-gov-east-1"
+  size                 = 100
+  tags = {
+    Name = "CyberArk-Vault-DataDisk"
+  }
+  tags_all = {
+    Name = "CyberArk-Vault-DataDisk"
+  }
+  throughput                 = 125
+  type                       = "gp3"
+  volume_initialization_rate = 0
+}
+
+# __generated__ by Terraform
+resource "aws_ebs_volume" "cyberark_psm_data" {
+  availability_zone    = "us-gov-east-1a"
+  encrypted            = false
+  final_snapshot       = null
+  iops                 = 3000
+  multi_attach_enabled = false
+  outpost_arn          = null
+  region               = "us-gov-east-1"
+  size                 = 100
+  tags = {
+    Name = "CyberArk-PSM-DataDisk"
+  }
+  tags_all = {
+    Name = "CyberArk-PSM-DataDisk"
+  }
+  throughput                 = 125
+  type                       = "gp3"
+  volume_initialization_rate = 0
+}
+
+# __generated__ by Terraform
+resource "aws_ebs_volume" "cyberark_pvwa_data" {
+  availability_zone    = "us-gov-east-1a"
+  encrypted            = false
+  final_snapshot       = null
+  iops                 = 3000
+  multi_attach_enabled = false
+  outpost_arn          = null
+  region               = "us-gov-east-1"
+  size                 = 100
+  tags = {
+    Name = "CyberArk-PVWA-DataDisk"
+  }
+  tags_all = {
+    Name = "CyberArk-PVWA-DataDisk"
+  }
+  throughput                 = 125
+  type                       = "gp3"
+  volume_initialization_rate = 0
+}
+
+# __generated__ by Terraform
+resource "aws_ebs_volume" "cyberark_cpm_data" {
+  availability_zone    = "us-gov-east-1a"
+  encrypted            = false
+  final_snapshot       = null
+  iops                 = 3000
+  multi_attach_enabled = false
+  outpost_arn          = null
+  region               = "us-gov-east-1"
+  size                 = 100
+  tags = {
+    Name = "CyberArk-CPM-DataDisk"
+  }
+  tags_all = {
+    Name = "CyberArk-CPM-DataDisk"
+  }
+  throughput                 = 125
+  type                       = "gp3"
+  volume_initialization_rate = 0
+}
+
+# __generated__ by Terraform from "sg-01f6fd453e01fb2be"
+resource "aws_security_group" "windows_sg" {
+  description = "Allow RDP, HTTP, HTTPS, and DNS traffic"
+  egress = [{
+    cidr_blocks      = ["0.0.0.0/0"]
+    description      = ""
+    from_port        = 0
+    ipv6_cidr_blocks = []
+    prefix_list_ids  = []
+    protocol         = "-1"
+    security_groups  = []
+    self             = false
+    to_port          = 0
+  }]
+  ingress = [{
+    cidr_blocks      = ["0.0.0.0/0"]
+    description      = ""
+    from_port        = 3389
+    ipv6_cidr_blocks = []
+    prefix_list_ids  = []
+    protocol         = "tcp"
+    security_groups  = []
+    self             = false
+    to_port          = 3389
+    }, {
+    cidr_blocks      = ["0.0.0.0/0"]
+    description      = ""
+    from_port        = 443
+    ipv6_cidr_blocks = []
+    prefix_list_ids  = []
+    protocol         = "tcp"
+    security_groups  = []
+    self             = false
+    to_port          = 443
+    }, {
+    cidr_blocks      = ["0.0.0.0/0"]
+    description      = ""
+    from_port        = 53
+    ipv6_cidr_blocks = []
+    prefix_list_ids  = []
+    protocol         = "tcp"
+    security_groups  = []
+    self             = false
+    to_port          = 53
+    }, {
+    cidr_blocks      = ["0.0.0.0/0"]
+    description      = ""
+    from_port        = 53
+    ipv6_cidr_blocks = []
+    prefix_list_ids  = []
+    protocol         = "udp"
+    security_groups  = []
+    self             = false
+    to_port          = 53
+    }, {
+    cidr_blocks      = ["0.0.0.0/0"]
+    description      = ""
+    from_port        = 80
+    ipv6_cidr_blocks = []
+    prefix_list_ids  = []
+    protocol         = "tcp"
+    security_groups  = []
+    self             = false
+    to_port          = 80
+    }, {
+    cidr_blocks      = ["172.0.0.0/16"]
+    description      = "Allow all from 172.0.0.0/16"
+    from_port        = 0
+    ipv6_cidr_blocks = []
+    prefix_list_ids  = []
+    protocol         = "-1"
+    security_groups  = []
+    self             = false
+    to_port          = 0
+  }]
+  name                   = "windows_sg"
+  region                 = "us-gov-east-1"
+  revoke_rules_on_delete = null
+  tags                   = {}
+  tags_all               = {}
+  vpc_id                 = "vpc-097a7d0d3da117447"
+}
+
+# __generated__ by Terraform
+resource "aws_instance" "cyberark_cpm" {
+  ami                                  = "ami-0ab86f48a048a68df"
+  associate_public_ip_address          = true
+  availability_zone                    = "us-gov-east-1a"
+  disable_api_stop                     = false
+  disable_api_termination              = false
+  ebs_optimized                        = false
+  force_destroy                        = false
+  get_password_data                    = false
+  hibernation                          = false
+  iam_instance_profile                 = "CyberArk-EC2-SSM-Profile"
+  instance_initiated_shutdown_behavior = "stop"
+  instance_type                        = "t3.large"
+  ipv6_address_count                   = 0
+  ipv6_addresses                       = []
+  key_name                             = "win2022"
+  monitoring                           = false
+  placement_partition_number           = 0
+  private_ip                           = "172.0.1.214"
+  region                               = "us-gov-east-1"
+  secondary_private_ips                = []
+  security_groups                      = []
+  source_dest_check                    = true
+  subnet_id                            = "subnet-0ea3b6dca06762833"
+  tags = {
+    Name = "CyberArk-CPM"
+  }
+  tags_all = {
+    Name = "CyberArk-CPM"
+  }
+  tenancy                     = "default"
+  user_data                   = null
+  user_data_replace_on_change = null
+  volume_tags                 = null
+  vpc_security_group_ids      = ["sg-01f6fd453e01fb2be"]
+  capacity_reservation_specification {
+    capacity_reservation_preference = "open"
+  }
+  cpu_options {
+    core_count       = 1
+    threads_per_core = 2
+  }
+  credit_specification {
+    cpu_credits = "unlimited"
+  }
+  ebs_block_device {
+    delete_on_termination = false
+    device_name           = "/dev/sdf"
+    encrypted             = false
+    iops                  = 3000
+    tags = {
+      Name = "CyberArk-CPM-DataDisk"
+    }
+    tags_all = {
+      Name = "CyberArk-CPM-DataDisk"
+    }
+    throughput  = 125
+    volume_size = 100
+    volume_type = "gp3"
+  }
+  enclave_options {
+    enabled = false
+  }
+  maintenance_options {
+    auto_recovery = "default"
+  }
+  metadata_options {
+    http_endpoint               = "enabled"
+    http_protocol_ipv6          = "disabled"
+    http_put_response_hop_limit = 1
+    http_tokens                 = "optional"
+    instance_metadata_tags      = "disabled"
+  }
+  primary_network_interface {
+    network_interface_id = "eni-0b3847d5c5a407372"
+  }
+  private_dns_name_options {
+    enable_resource_name_dns_a_record    = false
+    enable_resource_name_dns_aaaa_record = false
+    hostname_type                        = "ip-name"
+  }
+  root_block_device {
+    delete_on_termination = true
+    encrypted             = false
+    iops                  = 3000
+    tags                  = {}
+    tags_all              = {}
+    throughput            = 125
+    volume_size           = 60
+    volume_type           = "gp3"
+  }
+}
+
+# __generated__ by Terraform
+resource "aws_instance" "cyberark_psm" {
+  ami                                  = "ami-0ab86f48a048a68df"
+  associate_public_ip_address          = true
+  availability_zone                    = "us-gov-east-1a"
+  disable_api_stop                     = false
+  disable_api_termination              = false
+  ebs_optimized                        = false
+  force_destroy                        = false
+  get_password_data                    = false
+  hibernation                          = false
+  iam_instance_profile                 = "CyberArk-EC2-SSM-Profile"
+  instance_initiated_shutdown_behavior = "stop"
+  instance_type                        = "m6i.2xlarge"
+  ipv6_address_count                   = 0
+  ipv6_addresses                       = []
+  key_name                             = "win2022"
+  monitoring                           = false
+  placement_partition_number           = 0
+  private_ip                           = "172.0.1.43"
+  region                               = "us-gov-east-1"
+  secondary_private_ips                = []
+  security_groups                      = []
+  source_dest_check                    = true
+  subnet_id                            = "subnet-0ea3b6dca06762833"
+  tags = {
+    Name = "CyberArk-PSM"
+  }
+  tags_all = {
+    Name = "CyberArk-PSM"
+  }
+  tenancy                     = "default"
+  user_data                   = null
+  user_data_replace_on_change = null
+  volume_tags                 = null
+  vpc_security_group_ids      = ["sg-01f6fd453e01fb2be"]
+  capacity_reservation_specification {
+    capacity_reservation_preference = "open"
+  }
+  cpu_options {
+    core_count       = 4
+    threads_per_core = 2
+  }
+  ebs_block_device {
+    delete_on_termination = false
+    device_name           = "/dev/sdf"
+    encrypted             = false
+    iops                  = 3000
+    tags = {
+      Name = "CyberArk-PSM-DataDisk"
+    }
+    tags_all = {
+      Name = "CyberArk-PSM-DataDisk"
+    }
+    throughput  = 125
+    volume_size = 100
+    volume_type = "gp3"
+  }
+  enclave_options {
+    enabled = false
+  }
+  maintenance_options {
+    auto_recovery = "default"
+  }
+  metadata_options {
+    http_endpoint               = "enabled"
+    http_protocol_ipv6          = "disabled"
+    http_put_response_hop_limit = 1
+    http_tokens                 = "optional"
+    instance_metadata_tags      = "disabled"
+  }
+  primary_network_interface {
+    network_interface_id = "eni-0ae2f141cf786c453"
+  }
+  private_dns_name_options {
+    enable_resource_name_dns_a_record    = false
+    enable_resource_name_dns_aaaa_record = false
+    hostname_type                        = "ip-name"
+  }
+  root_block_device {
+    delete_on_termination = true
+    encrypted             = false
+    iops                  = 3000
+    tags                  = {}
+    tags_all              = {}
+    throughput            = 125
+    volume_size           = 60
+    volume_type           = "gp3"
+  }
+}
+
+# __generated__ by Terraform
+resource "aws_instance" "cyberark_vault" {
+  ami                                  = "ami-0ab86f48a048a68df"
+  associate_public_ip_address          = true
+  availability_zone                    = "us-gov-east-1a"
+  disable_api_stop                     = false
+  disable_api_termination              = false
+  ebs_optimized                        = false
+  force_destroy                        = false
+  get_password_data                    = false
+  hibernation                          = false
+  iam_instance_profile                 = "CyberArk-EC2-SSM-Profile"
+  instance_initiated_shutdown_behavior = "stop"
+  instance_type                        = "t3.large"
+  ipv6_address_count                   = 0
+  ipv6_addresses                       = []
+  key_name                             = "win2022"
+  monitoring                           = false
+  placement_partition_number           = 0
+  private_ip                           = "172.0.1.63"
+  region                               = "us-gov-east-1"
+  secondary_private_ips                = []
+  security_groups                      = []
+  source_dest_check                    = true
+  subnet_id                            = "subnet-0ea3b6dca06762833"
+  tags = {
+    Name = "CyberArk-Vault"
+  }
+  tags_all = {
+    Name = "CyberArk-Vault"
+  }
+  tenancy                     = "default"
+  user_data                   = null
+  user_data_replace_on_change = null
+  volume_tags                 = null
+  vpc_security_group_ids      = ["sg-01f6fd453e01fb2be"]
+  capacity_reservation_specification {
+    capacity_reservation_preference = "open"
+  }
+  cpu_options {
+    core_count       = 1
+    threads_per_core = 2
+  }
+  credit_specification {
+    cpu_credits = "unlimited"
+  }
+  ebs_block_device {
+    delete_on_termination = false
+    device_name           = "/dev/sdf"
+    encrypted             = false
+    iops                  = 3000
+    tags = {
+      Name = "CyberArk-Vault-DataDisk"
+    }
+    tags_all = {
+      Name = "CyberArk-Vault-DataDisk"
+    }
+    throughput  = 125
+    volume_size = 100
+    volume_type = "gp3"
+  }
+  enclave_options {
+    enabled = false
+  }
+  maintenance_options {
+    auto_recovery = "default"
+  }
+  metadata_options {
+    http_endpoint               = "enabled"
+    http_protocol_ipv6          = "disabled"
+    http_put_response_hop_limit = 1
+    http_tokens                 = "optional"
+    instance_metadata_tags      = "disabled"
+  }
+  primary_network_interface {
+    network_interface_id = "eni-0fa73b552b62ee453"
+  }
+  private_dns_name_options {
+    enable_resource_name_dns_a_record    = false
+    enable_resource_name_dns_aaaa_record = false
+    hostname_type                        = "ip-name"
+  }
+  root_block_device {
+    delete_on_termination = true
+    encrypted             = false
+    iops                  = 3000
+    tags                  = {}
+    tags_all              = {}
+    throughput            = 125
+    volume_size           = 60
+    volume_type           = "gp3"
+  }
+}
+
+# __generated__ by Terraform
+resource "aws_instance" "cyberark_dc" {
+  ami                                  = "ami-052dcb54a06973f54"
+  associate_public_ip_address          = true
+  availability_zone                    = "us-gov-east-1a"
+  disable_api_stop                     = false
+  disable_api_termination              = false
+  ebs_optimized                        = false
+  force_destroy                        = false
+  get_password_data                    = false
+  hibernation                          = false
+  iam_instance_profile                 = "CyberArk-EC2-SSM-Profile"
+  instance_initiated_shutdown_behavior = "stop"
+  instance_type                        = "t3.large"
+  ipv6_address_count                   = 0
+  ipv6_addresses                       = []
+  key_name                             = "win2022"
+  monitoring                           = false
+  placement_partition_number           = 0
+  private_ip                           = "172.0.1.45"
+  region                               = "us-gov-east-1"
+  secondary_private_ips                = []
+  security_groups                      = []
+  source_dest_check                    = true
+  subnet_id                            = "subnet-0ea3b6dca06762833"
+  tags = {
+    Name = "cyberark-dc"
+  }
+  tags_all = {
+    Name = "cyberark-dc"
+  }
+  tenancy                     = "default"
+  user_data                   = "  <powershell>\n    # --- Dynamic Variables from Terraform ---\n    $DomainName = \"testlab.local\"\n    $NetBIOSName = \"TESTLAB\"\n    $SafeModePassword = (ConvertTo-SecureString \"Solutions123!@#\" -AsPlainText -Force)\n    $ComputerName = \"J2R-DC01\"\n    $LogFile = \"C:\\\\ADSetup.log\"\n\n    # Rename the computer\n    Rename-Computer -NewName $ComputerName -Force\n\n    # Create a post-reboot script\n    $Script = @\"\n    <powershell>\n      \\$DomainName = \"testlab.local\"\n      \\$NetBIOSName = \"TESTLAB\"\n      \\$SafeModePassword = (ConvertTo-SecureString \"Solutions123!@#\" -AsPlainText -Force)\n      Install-WindowsFeature AD-Domain-Services, RSAT-ADDS\n      Import-Module ADDSDeployment\n\n      Install-ADDSForest `\n        -DomainName \\$DomainName `\n        -DomainNetbiosName \\$NetBIOSName `\n        -SafeModeAdministratorPassword \\$SafeModePassword `\n        -InstallDns:\\$true `\n        -Force:\\$true\n\n      Add-Content \"C:\\\\ADSetup.log\" \"Forest installation completed at \\$(Get-Date)\"\n    </powershell>\n\"@\n\n    # Save post-reboot script\n    Set-Content -Path \"C:\\\\ADSetupPost.ps1\" -Value $Script\n\n    # Register script for one-time execution on next boot\n    New-ItemProperty -Path \"HKLM:\\\\Software\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\RunOnce\" `\n      -Name \"CompleteADSetup\" `\n      -Value \"powershell.exe -ExecutionPolicy Bypass -File C:\\\\ADSetupPost.ps1\" `\n      -PropertyType String\n\n    Add-Content $LogFile \"Initial setup complete. Machine will reboot to continue AD configuration.\"\n    Restart-Computer -Force\n  </powershell>\n"
+  user_data_replace_on_change = null
+  volume_tags                 = null
+  vpc_security_group_ids      = ["sg-01f6fd453e01fb2be"]
+  capacity_reservation_specification {
+    capacity_reservation_preference = "open"
+  }
+  cpu_options {
+    core_count       = 1
+    threads_per_core = 2
+  }
+  credit_specification {
+    cpu_credits = "unlimited"
+  }
+  enclave_options {
+    enabled = false
+  }
+  maintenance_options {
+    auto_recovery = "default"
+  }
+  metadata_options {
+    http_endpoint               = "enabled"
+    http_protocol_ipv6          = "disabled"
+    http_put_response_hop_limit = 1
+    http_tokens                 = "optional"
+    instance_metadata_tags      = "disabled"
+  }
+  primary_network_interface {
+    network_interface_id = "eni-002eb0bbf05b3e751"
+  }
+  private_dns_name_options {
+    enable_resource_name_dns_a_record    = false
+    enable_resource_name_dns_aaaa_record = false
+    hostname_type                        = "ip-name"
+  }
+  root_block_device {
+    delete_on_termination = true
+    encrypted             = false
+    iops                  = 100
+    tags                  = {}
+    tags_all              = {}
+    throughput            = 0
+    volume_size           = 30
+    volume_type           = "gp2"
+  }
+}
+
+# __generated__ by Terraform
+resource "aws_instance" "cyberark_pvwa" {
+  ami                                  = "ami-052dcb54a06973f54"
+  associate_public_ip_address          = true
+  availability_zone                    = "us-gov-east-1a"
+  disable_api_stop                     = false
+  disable_api_termination              = false
+  ebs_optimized                        = false
+  force_destroy                        = false
+  get_password_data                    = false
+  hibernation                          = false
+  iam_instance_profile                 = "CyberArk-EC2-SSM-Profile"
+  instance_initiated_shutdown_behavior = "stop"
+  instance_type                        = "t3.large"
+  ipv6_address_count                   = 0
+  ipv6_addresses                       = []
+  key_name                             = "win2022"
+  monitoring                           = false
+  placement_partition_number           = 0
+  private_ip                           = "172.0.1.242"
+  region                               = "us-gov-east-1"
+  secondary_private_ips                = []
+  security_groups                      = []
+  source_dest_check                    = true
+  subnet_id                            = "subnet-0ea3b6dca06762833"
+  tags = {
+    Name = "CyberArk-PVWA"
+  }
+  tags_all = {
+    Name = "CyberArk-PVWA"
+  }
+  tenancy                     = "default"
+  user_data                   = null
+  user_data_replace_on_change = null
+  volume_tags                 = null
+  vpc_security_group_ids      = ["sg-01f6fd453e01fb2be"]
+  capacity_reservation_specification {
+    capacity_reservation_preference = "open"
+  }
+  cpu_options {
+    core_count       = 1
+    threads_per_core = 2
+  }
+  credit_specification {
+    cpu_credits = "unlimited"
+  }
+  ebs_block_device {
+    delete_on_termination = false
+    device_name           = "/dev/sdf"
+    encrypted             = false
+    iops                  = 3000
+    tags = {
+      Name = "CyberArk-PVWA-DataDisk"
+    }
+    tags_all = {
+      Name = "CyberArk-PVWA-DataDisk"
+    }
+    throughput  = 125
+    volume_size = 100
+    volume_type = "gp3"
+  }
+  enclave_options {
+    enabled = false
+  }
+  maintenance_options {
+    auto_recovery = "default"
+  }
+  metadata_options {
+    http_endpoint               = "enabled"
+    http_protocol_ipv6          = "disabled"
+    http_put_response_hop_limit = 1
+    http_tokens                 = "optional"
+    instance_metadata_tags      = "disabled"
+  }
+  primary_network_interface {
+    network_interface_id = "eni-0d5009450ec448f46"
+  }
+  private_dns_name_options {
+    enable_resource_name_dns_a_record    = false
+    enable_resource_name_dns_aaaa_record = false
+    hostname_type                        = "ip-name"
+  }
+  root_block_device {
+    delete_on_termination = true
+    encrypted             = false
+    iops                  = 100
+    tags                  = {}
+    tags_all              = {}
+    throughput            = 0
+    volume_size           = 30
+    volume_type           = "gp2"
+  }
+}
